@@ -11,7 +11,7 @@ export class ProyectoService {
         private readonly proyectoRepository: Repository<ProyectoEntity>
     ) {}
 
-    async create(proyecto: ProyectoEntity): Promise<ProyectoEntity> {
+    async crearProyecto(proyecto: ProyectoEntity): Promise<ProyectoEntity> {
         if (proyecto.fechaFin <= proyecto.fechaInicio)
             throw new BusinessLogicException('La fecha de fin debe ser posterior a la fecha de inicio', BusinessError.PRECONDITION_FAILED);
         return await this.proyectoRepository.save(proyecto);

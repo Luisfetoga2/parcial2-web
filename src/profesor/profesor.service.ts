@@ -27,7 +27,7 @@ export class ProfesorService {
     }
 
     async eliminarProfesorId(id: number) {
-        const profesor: ProfesorEntity = await this.profesorRepository.findOne({where: {id}});
+        const profesor: ProfesorEntity = await this.profesorRepository.findOne({where: {id}, relations: ['propuestas']});
         if (!profesor)
             throw new BusinessLogicException('The profesor with the given id was not found', BusinessError.NOT_FOUND);
         profesor.propuestas.forEach(function (propuesta) {
@@ -39,7 +39,7 @@ export class ProfesorService {
     }
 
     async eliminarProfesorCedula(cedula_: number) {
-        const profesor: ProfesorEntity = await this.profesorRepository.findOne({where: {cedula: cedula_}});
+        const profesor: ProfesorEntity = await this.profesorRepository.findOne({where: {cedula: cedula_}, relations: ['propuestas']});
         if (!profesor)
             throw new BusinessLogicException('The profesor with the given id was not found', BusinessError.NOT_FOUND);
         profesor.propuestas.forEach(function (propuesta) {

@@ -12,7 +12,7 @@ export class EstudianteService {
     ) {}
 
     async crearEstudiante(estudiante: EstudianteEntity): Promise<EstudianteEntity> {
-        if (estudiante.nombre.length != 10)
+        if (estudiante.codigo.length != 10)
             throw new BusinessLogicException('El codigo debe tener 10 caracteres', BusinessError.PRECONDITION_FAILED);
         return await this.estudianteRepository.save(estudiante);
     }
